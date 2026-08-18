@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己紹介 | YUNJU LEE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sea-1:#EAFBFC;
+    --sea-2:#BFF0EF;
+    --sea-3:#7FE3DD;
+    --sea-4:#3AC9C2;
+    --sea-5:#1FAEBE;
+    --sea-6:#147F9E;
+    --sea-7:#0C5C82;
+    --sea-8:#0A3D62;
+    --ink:#173247;
+    --ink-soft:rgba(23,50,71,0.72);
+    --paper-light:rgba(255,255,255,0.6);
+    --paper-light-line:rgba(23,50,71,0.14);
+    --hanko:#BF3232;
+    --sakura:#FF87A8;
+    --sun:#FFC94D;
+    --card:#FBFBF5;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    min-height:100%;
+    font-family:'Noto Sans JP',sans-serif;
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    background:linear-gradient(180deg,
+      var(--sea-1) 0%,
+      var(--sea-2) 12%,
+      var(--sea-3) 27%,
+      var(--sea-4) 40%,
+      var(--sea-5) 55%,
+      var(--sea-6) 70%,
+      var(--sea-7) 85%,
+      var(--sea-8) 100%);
+  }
+  h1,h2,h3,.serif{font-family:'Noto Serif JP',serif; letter-spacing:0.01em;}
+  .wrap{max-width:980px; margin:0 auto; padding:0 32px;}
+  section{position:relative; padding:64px 0 40px;}
+  .on-dark{color:#EAF6FB;}
+  .on-dark .ink-soft, .on-dark p{color:rgba(234,246,251,0.82);}
+
+  /* ---------------- GLASSY LIGHT OVERLAY (transparency / depth) ---------------- */
+  .light-overlay{
+    position:fixed; inset:0; z-index:1; pointer-events:none;
+    mix-blend-mode:overlay;
+    background:
+      linear-gradient(115deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0) 18%, rgba(255,255,255,0) 58%, rgba(255,255,255,0.16) 76%, rgba(255,255,255,0) 92%),
+      radial-gradient(ellipse 60% 26% at 76% 4%, rgba(255,255,255,0.45), transparent 62%);
+  }
+  .hero, .wrap, section, footer, .wave-wrap{ position:relative; z-index:2; }
+
+  /* ---------------- WAVE DIVIDER : vertical surge + fine foam particles ---------------- */
+  .wave-wrap{
+      position:relative;
+      width:100%;
+      height:180px;
+      overflow:hidden;
+  }
+
+  #waveCanvas{
+      width:100%;
+      height:100%;
+      display:block;
+  }
+
+  /* ---------------- HERO ---------------- */
+  .hero{padding-top:100px; padding-bottom:30px;}
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:13px; letter-spacing:0.22em; font-weight:500;
+    color:var(--sea-8); margin-bottom:22px;
+  }
+  .hero .eyebrow::before{content:""; width:26px; height:1px; background:var(--hanko);}
+  .hero h1{
+    font-size:clamp(34px,6vw,58px); font-weight:700; margin:0 0 20px;
+    color:var(--sea-8);
+  }
+  .hero p.lead{font-size:clamp(15.5px,2vw,18px); color:var(--ink-soft); max-width:700px; margin:0;}
+  .hanko{
+    position:absolute; top:96px; right:32px;
+    width:82px; height:82px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--hanko);
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,0.85), inset 0 0 0 5px var(--hanko);
+    transform:rotate(-8deg);
+    color:var(--hanko);
+    font-family:'Noto Serif JP',serif; font-weight:700; font-size:15px;
+    writing-mode:vertical-rl;
+    opacity:0.9;
+  }
+  @media (max-width:640px){ .hanko{display:none;} }
+
+  /* ---------------- SECTION HEAD ---------------- */
+  .section-head{display:flex; align-items:baseline; gap:16px; margin-bottom:40px; flex-wrap:wrap;}
+  .num{
+    width:34px; height:34px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    background:#fff;
+    border:2px solid #14202B;
+    font-family:'Noto Serif JP',serif; font-weight:700; font-size:14px;
+  }
+  .section-head h2{font-size:clamp(22px,3.2vw,30px); margin:0;}
+  .section-head .sub{font-size:13.5px; color:var(--ink-soft); margin-left:auto;}
+  .on-dark .section-head .sub{color:rgba(234,246,251,0.75);}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------------- CARDS (education / language) ---------------- */
+  .card-light{
+    background:var(--paper-light);
+    border:1px solid var(--paper-light-line);
+    border-radius:10px;
+    padding:24px 24px 22px;
+    backdrop-filter:blur(6px);
+  }
+  .card-dark{
+    background:rgba(255,255,255,0.10);
+    border:1px solid rgba(255,255,255,0.28);
+    border-radius:10px;
+    padding:14px 20px;
+    backdrop-filter:blur(6px);
+  }
+
+  /* ---------------- EDUCATION ---------------- */
+  .diploma-row{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:760px){ .diploma-row{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .diploma-row{grid-template-columns:1fr;} }
+  .diploma{position:relative;}
+  .diploma::before{
+    content:attr(data-tag);
+    position:absolute; top:-11px; left:20px;
+    background:var(--sea-8); color:#EAF6FB;
+    font-size:11px; letter-spacing:0.1em; padding:4px 10px; border-radius:2px;
+  }
+  .diploma h3{font-size:18px; margin:10px 0 6px; color:var(--sea-8);}
+  .diploma p{margin:0; font-size:14px; color:var(--ink-soft);}
+
+  /* ---------------- PLAYING-CARD FLIP CARDS ---------------- */
+  .flip-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:760px){ .flip-grid{grid-template-columns:1fr;} }
+  .flip-card{ height:220px; perspective:1200px; cursor:pointer; }
+  .flip-card-inner{
+    position:relative; width:100%; height:100%;
+    transition:transform .6s cubic-bezier(.4,.2,.2,1);
+    transform-style:preserve-3d;
+  }
+  .flip-card.flipped .flip-card-inner{ transform:rotateY(180deg); }
+  .flip-face{
+    position:absolute; inset:0;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    border-radius:14px;
+    background:var(--card);
+    border:1.5px solid rgba(23,50,71,0.16);
+    box-shadow:0 10px 24px rgba(10,40,62,0.22);
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding:18px;
+    text-align:center;
+  }
+  .flip-back{ transform:rotateY(180deg); justify-content:flex-start; padding-top:26px; }
+  .flip-face .pip{
+    position:absolute;
+    font-family:'Noto Serif JP',serif; font-weight:700; font-size:13px;
+    color:var(--ink); opacity:0.55; line-height:1;
+  }
+  .pip-tl{ top:12px; left:14px; }
+  .pip-br{ bottom:12px; right:14px; transform:rotate(180deg); }
+  .flip-face .icon-wrap{ color:var(--ink); }
+  .flip-front .icon-wrap{ margin-bottom:0; }
+  .flip-back .icon-wrap{ margin-bottom:12px; transform:scale(0.72); }
+  .flip-back h3{ font-size:35px; margin:0 0 6px; color:var(--sea-8); }
+  .flip-back p{ font-size:15px; color:var(--ink-soft); margin:0; padding:0 6px; }
+  .flip-back .when{ font-size:11px; letter-spacing:0.08em; color:var(--hanko); font-weight:600; margin-bottom:4px; }
+  .hint{ font-size:12.5px; }
+
+  /* ---------------- LANGUAGES ---------------- */
+  .lang-list{display:flex; flex-direction:column; gap:14px;}
+  .lang-item{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding:14px 20px; }
+  .lang-name{font-size:20px; font-weight:500; min-width:96px;}
+  .sakura-scale{display:flex; align-items:center; gap:4px;}
+  .native-badge{
+    font-size:12.5px; letter-spacing:0.06em; font-weight:500;
+    background:rgba(255,135,168,0.22); color:#FF7FA0;
+    border:1px solid rgba(255,135,168,0.5);
+    padding:4px 12px; border-radius:999px;
+  }
+  .lang-note-badge{ font-size:12.5px; color:rgba(234,246,251,0.85); margin-left:4px; }
+  @media (max-width:420px){
+    .lang-item{ flex-direction:column; align-items:flex-start; gap:8px; }
+    .lang-name{ min-width:0; }
+  }
+  .sakura-pop{ display:inline-flex; opacity:0; transform:scale(0.5); }
+  .lang-list.gauge-in .sakura-pop{ animation:sakuraPop .45s cubic-bezier(.34,1.56,.64,1) forwards; }
+  @keyframes sakuraPop{
+    0%{ opacity:0; transform:scale(0.15); }
+    60%{ opacity:1; transform:scale(1.25); }
+    100%{ opacity:1; transform:scale(1); }
+  }
+  .native-badge{ opacity:0; transform:scale(0.7); }
+  .lang-list.gauge-in .native-badge{ animation:sakuraPop .45s cubic-bezier(.34,1.56,.64,1) forwards; }
+
+  /* ---------------- FOOTER ---------------- */
+  footer{padding:56px 0 90px; text-align:center;}
+  footer .thanks{font-family:'Noto Serif JP',serif; font-size:26px; margin-bottom:6px; color:#fff;}
+  footer .small{font-size:12.5px; letter-spacing:0.08em; color:rgba(234,246,251,0.7);}
+</style>
+</head>
+<body>
+
+<div class="wrap hero">
+  <div class="eyebrow">自己紹介</div>
+  <h1>はじめまして、<br>YUNJU LEE です</h1>
+  <p class="lead">ホテル経営学からスタートし、コンピュータ工学と人工知能を学びました。<br>今は日本・名古屋で新しい日々を過ごしています。</p>
+  <div class="hanko">名古屋</div>
+</div>
+
+<div class="wave-wrap">
+    <canvas id="waveCanvas"></canvas>
+</div>
+
+<div class="wrap">
+  <section class="reveal">
+    <div class="section-head">
+      <div class="num" style="color:var(--sea-5);">1</div>
+      <h2>学歴</h2>
+      <div class="sub">学位 x 3</div>
+    </div>
+    <div class="diploma-row">
+      <div class="diploma card-light" data-tag="学士">
+        <h3>ホテル経営学</h3>
+        <p>人と向き合うサービスの基本を学んだ出発点。</p>
+      </div>
+      <div class="diploma card-light" data-tag="修士">
+        <h3>コンピュータ工学</h3>
+        <p>文系から理系へ、新しい分野に挑戦しました。</p>
+      </div>
+      <div class="diploma card-light" data-tag="修士">
+        <h3>人工知能</h3>
+        <p>テクノロジーの最前線をさらに深く探求しました。</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wave-wrap">
+  <svg class="wave-back" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,82 Q300,50 600,82 T1200,82 T1800,82 T2400,82 L2400,140 L0,140 Z" fill="var(--sea-4)" opacity="0.5"/></svg>
+  <svg class="wave-mid" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,60 Q150,35 300,60 T600,60 T900,60 T1200,60 T1500,60 T1800,60 T2100,60 T2400,60 L2400,140 L0,140 Z" fill="var(--sea-5)" opacity="0.55"/></svg>
+</div>
+
+<div class="wrap on-dark">
+  <section class="reveal">
+    <div class="section-head">
+      <div class="num" style="color:var(--sea-6);">2</div>
+      <h2>日本での生活</h2>
+      <div class="sub hint">カードをタップして詳細を見る</div>
+    </div>
+    <div class="flip-grid">
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">
+            <span class="pip pip-tl"></span>
+            <div class="icon-wrap">
+              <svg width="100" height="100" viewBox="0 0 48 48"
+                  fill="none" stroke="var(--ink)"
+                  stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+
+                <path d="M10 20 Q24 8 38 20"/>
+                <path d="M10 20 H38"/>
+
+                <path d="M24 20 V36"/>
+
+                <path d="M24 36 Q24 42 18 42"/>
+
+                <path d="M12 40 H36"/>
+              </svg>
+            </div>
+            <span class="pip pip-br"></span>
+          </div>
+          <div class="flip-face flip-back">
+            <h3 style="margin-top: 0.5em;">沖縄</h3>
+            <p>日本での初めての生活。言葉も文化も手探りの日々でした。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">
+            <span class="pip pip-tl"></span>
+            <div class="icon-wrap">
+              <svg width="100" height="100" viewBox="0 0 48 48"
+                  fill="none" stroke="var(--ink)"
+                  stroke-width="2" stroke-linecap="round">
+
+                <path d="M24 6V42"/>
+                <path d="M8 24H40"/>
+                <path d="M13 13L35 35"/>
+                <path d="M35 13L13 35"/>
+              </svg>
+            </div>
+            <span class="pip pip-br"></span>
+          </div>
+          <div class="flip-face flip-back">            
+            <h3 style="margin-top: 0.5em;">北海道</h3>
+            <p>沖縄とはまったく違う気候と雰囲気の中で、もうひとつの生活を経験しました。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">
+            <span class="pip pip-tl"></span>
+            <div class="icon-wrap">
+              <svg width="100" height="100" viewBox="0 0 48 48"
+                  fill="none" stroke="var(--ink)"
+                  stroke-width="2" stroke-linejoin="round">
+
+                <path d="M12 38H36"/>
+                <path d="M16 38V28H32V38"/>
+                <path d="M14 28H34"/>
+                <path d="M18 20H30"/>
+                <path d="M20 12H28"/>
+                <path d="M24 8V12"/>
+              </svg>
+            </div>
+            <span class="pip pip-br"></span>
+          </div>
+          <div class="flip-face flip-back">            
+            <h3 style="margin-top: 0.5em;">名古屋</h3>
+            <p>あれから10年、名古屋に腰を据えて新しい日常を築いています。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="wave-wrap">
+  <svg class="wave-back" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,82 Q300,50 600,82 T1200,82 T1800,82 T2400,82 L2400,140 L0,140 Z" fill="var(--sea-5)" opacity="0.45"/></svg>
+
+  <svg class="wave-mid" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,60 Q150,35 300,60 T600,60 T900,60 T1200,60 T1500,60 T1800,60 T2100,60 T2400,60 L2400,140 L0,140 Z" fill="var(--sea-6)" opacity="0.55"/></svg>
+</div>
+
+<div class="wrap on-dark">
+  <section class="reveal">
+    <div class="section-head">
+      <div class="num" style="color:var(--sea-7);">3</div>
+      <h2>趣味</h2>
+      <div class="sub hint">カードをタップして詳細を見る</div>
+    </div>
+    <div class="flip-grid">
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">
+            <span class="pip pip-tl"></span>
+            <div class="icon-wrap">
+              <svg width="100" height="100" viewBox="0 0 44 44" fill="none">
+                <path d="M6 34 L22 10 L38 34 Z" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M22 10 L22 34" stroke="var(--hanko)" stroke-width="2"/>
+                <path d="M2 34 H42" stroke="var(--ink)" stroke-width="2"/>
+              </svg>
+            </div>
+            <span class="pip pip-br"></span>
+          </div>
+          <div class="flip-face flip-back">            
+            <h3 style="margin-top: 0.5em;">キャンプ</h3>
+            <p>自然の中でテントを張り、静かな時間を過ごすのが好きです。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">
+            <span class="pip pip-tl"></span>
+            <div class="icon-wrap">
+              <svg width="100" height="100" viewBox="0 0 44 44" fill="none">
+                <path d="M3 34 L15 14 L21 24 L27 12 L41 34 Z" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                <circle cx="33" cy="9" r="4" stroke="var(--hanko)" stroke-width="2"/>
+              </svg>
+            </div>
+            <span class="pip pip-br"></span>
+          </div>
+          <div class="flip-face flip-back">            
+            <h3 style="margin-top: 0.5em;">登山</h3>
+            <p>景色を楽しみながら、体力づくりも兼ねて山を登っています。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">
+            <span class="pip pip-tl" style="color:var(--hanko); opacity:0.8;"></span>
+            <div class="icon-wrap">
+              <svg width="100" height="100" viewBox="0 0 44 44" fill="none">
+                <path d="M2 34 L14 16 L18 20 L22 8 L26 20 L30 16 L42 34 Z" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                <path d="M18 20 L20 16 L24 16 L26 20" stroke="var(--ink)" stroke-width="1.4"/>
+              </svg>
+            </div>
+            <span class="pip pip-br" style="color:var(--hanko); opacity:0.8;"></span>
+          </div>
+          <div class="flip-face flip-back">
+            <h3 style="margin-top: 0.5em;">富士山</h3>
+            <p>登山で積み重ねてきた体力と経験を試す、次の目標です。</p>
+            <div class="when">D-DAY：2026年8月</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="wave-wrap">
+  <svg class="wave-back" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,82 Q300,50 600,82 T1200,82 T1800,82 T2400,82 L2400,140 L0,140 Z" fill="var(--sea-6)" opacity="0.45"/></svg>
+  <svg class="wave-mid" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,60 Q150,35 300,60 T600,60 T900,60 T1200,60 T1500,60 T1800,60 T2100,60 T2400,60 L2400,140 L0,140 Z" fill="var(--sea-7)" opacity="0.55"/></svg>
+  
+</div>
+
+<div class="wrap on-dark">
+  <section class="reveal">
+    <div class="section-head">
+      <div class="num" style="color:var(--sea-8);">4</div>
+      <h2>使用可能な言語</h2>
+      <div class="sub">語学が好きです</div>
+    </div>
+    <div class="lang-list">
+
+      <div class="lang-item card-dark">
+        <div class="lang-name">韓国語</div>
+        <div class="native-badge">母語</div>
+      </div>
+
+      <div class="lang-item card-dark">
+        <div class="lang-name">日本語</div>
+        <div class="sakura-scale" id="sakura-ja"></div>
+      </div>
+
+      <div class="lang-item card-dark">
+        <div class="lang-name">英語</div>
+        <div class="sakura-scale" id="sakura-en"></div>
+      </div>
+
+      <div class="lang-item card-dark">
+        <div class="lang-name">中国語</div>
+        <div class="sakura-scale" id="sakura-zh"></div>
+      </div>
+
+      <div class="lang-item card-dark">
+        <div class="lang-name">フランス語</div>
+        <div class="sakura-scale" id="sakura-fr"></div>
+        <div class="lang-note-badge">はじめたばかり</div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<div class="wave-wrap">
+  <svg class="wave-back" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,82 Q300,50 600,82 T1200,82 T1800,82 T2400,82 L2400,140 L0,140 Z" fill="var(--sea-7)" opacity="0.45"/></svg>
+  <svg class="wave-mid" viewBox="0 0 2400 140" preserveAspectRatio="none"><path d="M0,60 Q150,35 300,60 T600,60 T900,60 T1200,60 T1500,60 T1800,60 T2100,60 T2400,60 L2400,140 L0,140 Z" fill="var(--sea-8)" opacity="0.6"/></svg>
+  
+</div>
+
+<div class="wrap on-dark">
+  <footer>
+    <div class="thanks">ありがとうございました</div>
+    <div class="small">THANK YOU</div>
+  </footer>
+</div>
+
+<script>
+function sakuraSVG(filled){
+    const color = filled ? "#FF87A8" : "rgba(234,246,251,0.35)";
+    return `<svg width="20" height="20" viewBox="0 0 24 24" fill="${color}">
+      <g>
+        <ellipse cx="12" cy="6" rx="4" ry="5"/>
+        <ellipse cx="12" cy="6" rx="4" ry="5" transform="rotate(72 12 12)"/>
+        <ellipse cx="12" cy="6" rx="4" ry="5" transform="rotate(144 12 12)"/>
+        <ellipse cx="12" cy="6" rx="4" ry="5" transform="rotate(216 12 12)"/>
+        <ellipse cx="12" cy="6" rx="4" ry="5" transform="rotate(288 12 12)"/>
+        <circle cx="12" cy="12" r="2.4"
+            fill="${filled ? '#FFD98A' : 'rgba(234,246,251,0.35)'}"/>
+      </g>
+    </svg>`;
+}
+
+function renderScale(id, level){
+    const el=document.getElementById(id);
+    let html="";
+    for(let i=1;i<=5;i++) html+=sakuraSVG(i<=level);
+    el.innerHTML=html;
+}
+
+renderScale("sakura-ja",4);
+renderScale("sakura-en",4);
+renderScale("sakura-zh",2);
+renderScale("sakura-fr",1);
+
+document.querySelectorAll(".flip-card").forEach(card=>{
+    card.addEventListener("click",()=>{
+        card.classList.toggle("flipped");
+    });
+});
+
+const items=document.querySelectorAll(".reveal");
+
+const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+        if(e.isIntersecting){
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+        }
+    });
+},{
+    threshold:0.12
+});
+
+items.forEach(el=>io.observe(el));
+
+/* ---------------------- */
+/* foam 생성 */
+/* ---------------------- */
+
+const canvas = document.getElementById("waveCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+}
+
+window.addEventListener("resize",resize);
+
+resize();
+
+/* ---------------------- */
+/* 파도 실시간 제어를 위한 변수 선언 및 설정 */
+/* ---------------------- */
+
+let t=0;
+let phase=0;
+let waveRiseValue=0;
+
+const frontfoamDots=[];
+const backfoamDots=[];
+const frontsplashDrops=[];
+const backsplashDrops=[];
+
+for(let i=0;i<260;i++){
+    frontfoamDots.push({
+        x:Math.random(),
+        size:1+Math.random()*3,
+        phase:Math.random()*Math.PI*2,
+        speed:0.5+Math.random()*0.8,
+        alpha:0.3+Math.random()*0.7
+    });
+}
+
+for(let i=0;i<260;i++){
+    backfoamDots.push({
+        x:Math.random(),
+        size:1+Math.random()*3,
+        phase:Math.random()*Math.PI*2,
+        speed:0.5+Math.random()*0.8,
+        alpha:0.3+Math.random()*0.7
+    });
+}
+
+for(let i=0;i<20;i++){
+    frontsplashDrops.push({
+        x:Math.random(),
+        progress:Math.random(),
+        speed:0.002+Math.random()*0.002,
+        front:Math.random()>0.5   // 추가
+    });
+}
+
+for(let i=0;i<20;i++){
+    backsplashDrops.push({
+        x:Math.random(),
+        progress:Math.random(),
+        speed:0.002+Math.random()*0.002,
+        front:Math.random()>0.5   // 추가
+    });
+}
+
+/* ---------------------- */
+/* 천천히 상승, 위에서 정지, 빠르게 하강 */
+/* ---------------------- */
+function updateWaveState(){
+
+    phase+=0.003;
+
+    if(phase>1)
+        phase=0;
+
+    if(phase<0.65){
+
+        const p=phase/0.65;
+
+        waveRiseValue=
+            55*
+            (1-Math.cos(p*Math.PI/2));
+
+    }
+    else if(phase<0.82){
+
+        waveRiseValue=55;
+
+    }
+    else{
+
+        const p=(phase-0.82)/0.18;
+
+        waveRiseValue=
+            55*
+            (1-p);
+
+    }
+
+}
+
+/* ---------------------- */
+/* 뒤쪽 파도 */
+/* ---------------------- */
+
+function backWave(x){
+
+    const rise=waveRiseValue/25;
+    const base=canvas.height-90;
+    const y=
+        Math.sin((x+t*40)*0.005)*35
+        +Math.sin((x+t*70)*0.012)*14
+        +Math.sin((x+t*25)*0.03)*8;
+
+    return base
+        +y*(0.65+rise*0.55)
+        -rise*25;
+
+}
+
+/* ---------------------- */
+/* 앞쪽 파도 */
+/* ---------------------- */
+
+function frontWave(x){
+
+  const rise=waveRiseValue/30;
+  const base=canvas.height-80;
+  const wave =
+  Math.sin((x+t*60)*0.008)*28
+  +Math.sin((x+t*90)*0.022)*9
+  +Math.sin((x+t*35)*0.06)*5;
+
+  const crest = Math.max(wave,0);
+
+  const motion = Math.sin(t*2+x*0.01)*3;
+
+
+    return base
+        +wave
+        -crest*rise*0.8
+        +motion;
+}
+
+function draw(){
+    t+=0.05; /* 파도 속도 조절 */
+    updateWaveState();
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    ); 
+     
+
+    /* ---------------------- */
+    /* 뒤쪽 바다 */
+    /* ---------------------- */
+
+    ctx.beginPath();
+    ctx.moveTo(0,canvas.height);
+
+    for(let x=0;x<=canvas.width;x+=4){
+        ctx.lineTo(x,backWave(x));
+    }
+
+    ctx.lineTo(canvas.width,canvas.height);
+    ctx.closePath();
+
+    let back=ctx.createLinearGradient(
+        0,
+        canvas.height-180,
+        0,
+        canvas.height
+    );
+
+    back.addColorStop(0,"rgba(250,254,255,.04)");
+    back.addColorStop(.5,"rgba(244,251,253,.09)");
+    back.addColorStop(1,"rgba(235,247,250,.15)");
+
+    ctx.fillStyle=back;
+    ctx.fill();
+
+    /* ---------------------- */
+    /* 앞쪽 바다 */
+    /* ---------------------- */
+
+    ctx.beginPath();
+    ctx.moveTo(0,canvas.height);
+
+    for(let x=0;x<=canvas.width;x+=4){
+        ctx.lineTo(x,frontWave(x));
+    }
+
+    ctx.lineTo(canvas.width,canvas.height);
+    ctx.closePath();
+
+    let front=ctx.createLinearGradient(
+        0,
+        canvas.height-180,
+        0,
+        canvas.height
+    );
+
+    front.addColorStop(0,"rgba(255,255,255,.03)");
+    front.addColorStop(.45,"rgba(255,255,255,.08)");
+    front.addColorStop(1,"rgba(255,255,255,.15)");
+
+    ctx.fillStyle=front;
+    ctx.fill();
+
+    /* ---------------------- */
+    /* 뒤쪽 파도선 */
+    /* ---------------------- */
+
+    ctx.beginPath();
+
+    for(let x=0;x<=canvas.width;x+=2){
+
+        if(x==0)
+            ctx.moveTo(x,backWave(x));
+        else
+            ctx.lineTo(x,backWave(x));
+
+    }
+
+    ctx.strokeStyle="rgba(255,255,255,.03)";
+    ctx.lineWidth=3;
+
+    ctx.stroke();
+
+    /* ---------------------- */
+    /* 앞쪽 파도선 */
+    /* ---------------------- */
+
+    ctx.beginPath();
+
+    for(let x=0;x<=canvas.width;x+=2){
+
+        if(x==0)
+            ctx.moveTo(x,frontWave(x));
+        else
+            ctx.lineTo(x,frontWave(x));
+
+    }
+
+    ctx.strokeStyle="rgba(255,255,255,.03)";
+    ctx.lineWidth=2;
+
+    ctx.stroke();
+
+    //------------------------
+    // 포말
+    //------------------------
+
+    frontfoamDots.forEach(dot=>{
+
+        const x=dot.x*canvas.width;
+        const y=frontWave(x);
+
+        const offset=Math.sin(t*dot.speed+dot.phase)*7;
+
+        ctx.globalAlpha=dot.alpha*0.55;
+
+        ctx.beginPath();
+        ctx.arc(x,y+offset,dot.size,0,Math.PI*2);
+
+        ctx.fillStyle="rgba(255,255,255,.45)";
+        ctx.fill();
+
+    });
+
+    backfoamDots.forEach(dot=>{
+
+        const x=dot.x*canvas.width;
+        const y=backWave(x);
+
+        const offset=Math.sin(t*dot.speed+dot.phase)*7;
+
+        ctx.globalAlpha=dot.alpha*0.55;
+
+        ctx.beginPath();
+        ctx.arc(x,y+offset,dot.size,0,Math.PI*2);
+
+        ctx.fillStyle="rgba(255,255,255,.25)";
+        ctx.fill();
+
+    });
+
+    //------------------------
+    // 앞쪽 물방울
+    //------------------------
+
+    frontsplashDrops.forEach(drop=>{
+
+        drop.progress+=drop.speed;
+
+        if(drop.progress>1){
+            drop.progress=0;
+            drop.x=Math.random();
+        }
+
+        const x=drop.x*canvas.width;
+        const y=frontWave(x);
+
+        ctx.globalAlpha=1-drop.progress;
+
+        ctx.beginPath();
+        ctx.arc(x,y-drop.progress*80,2,0,Math.PI*2);
+
+        ctx.fillStyle="rgba(255,255,255,.45)";
+        ctx.fill();
+
+    });
+
+    //------------------------
+    // 뒤쪽 물방울
+    //------------------------
+
+    backsplashDrops.forEach(drop=>{
+
+        drop.progress+=drop.speed;
+
+        if(drop.progress>1){
+            drop.progress=0;
+            drop.x=Math.random();
+        }
+
+        const x=drop.x*canvas.width;
+        const y=backWave(x);
+
+        ctx.globalAlpha=1-drop.progress;
+
+        ctx.beginPath();
+        ctx.arc(x,y-drop.progress*80,2,0,Math.PI*2);
+
+        ctx.fillStyle="rgba(255,255,255,.45)";
+        ctx.fill();
+
+    });
+
+    ctx.globalAlpha=1;
+
+    requestAnimationFrame(draw);
+   
+}
+
+draw();
+
+</script>
+
+</body>
+</html>
