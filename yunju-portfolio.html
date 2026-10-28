@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이윤주 · Portfolio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--h:200;--bg:hsl(var(--h) 32% 95%);--ink:hsl(var(--h) 60% 14%);--mute:hsl(var(--h) 20% 38%);--cob:hsl(var(--h) 90% 34%);--on:#fff;--mint:hsl(calc(var(--h) - 30) 62% 82%);--card:#fff;--line:hsl(var(--h) 28% 86%);--sky:hsl(var(--h) 85% 91%);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:hsl(var(--h) 45% 9%);--ink:hsl(var(--h) 40% 93%);--mute:hsl(var(--h) 25% 72%);--cob:hsl(var(--h) 100% 72%);--on:hsl(var(--h) 60% 10%);--mint:hsl(calc(var(--h) - 30) 40% 24%);--card:hsl(var(--h) 40% 15%);--line:hsl(var(--h) 30% 24%);--sky:hsl(var(--h) 45% 18%);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:hsl(var(--h) 45% 9%);--ink:hsl(var(--h) 40% 93%);--mute:hsl(var(--h) 25% 72%);--cob:hsl(var(--h) 100% 72%);--on:hsl(var(--h) 60% 10%);--mint:hsl(calc(var(--h) - 30) 40% 24%);--card:hsl(var(--h) 40% 15%);--line:hsl(var(--h) 30% 24%);--sky:hsl(var(--h) 45% 18%);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.7 "IBM Plex Sans KR",system-ui,sans-serif;word-break:keep-all}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{margin:0;line-height:1.15}
+.lat{font-family:"Bricolage Grotesque","IBM Plex Sans KR",sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cob);outline-offset:3px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;min-height:min(86vh,760px);padding:48px 0}
+.hero h1{font-size:clamp(64px,11vw,132px);font-weight:700;letter-spacing:-.04em}
+.hero .en{font:800 18px/1 "Bricolage Grotesque",sans-serif;color:var(--cob);margin:0 0 18px;letter-spacing:.02em}
+.hero p.tag{font-size:clamp(20px,2.4vw,28px);font-weight:500;margin:28px 0 12px;max-width:16em;line-height:1.4}
+.hero p.sub{color:var(--mute);max-width:32em;margin:0 0 28px}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:11px 20px;border-radius:999px;border:1.5px solid var(--ink);text-decoration:none;font-weight:500;font-size:15px;transition:background .15s,color .15s}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.p{background:var(--cob);border-color:var(--cob);color:var(--on)}
+.btn.p:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.stage{position:relative;aspect-ratio:1;width:100%;background:var(--sky);border-radius:48% 52% 44% 56%/52% 44% 56% 48%}
+#pc{position:absolute;inset:0;width:100%;height:100%;cursor:pointer;border-radius:inherit}
+.cap{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);font-size:13px;color:var(--mute);white-space:nowrap}
+
+/* work */
+section{padding:72px 0 0}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:28px}
+.head h2{font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.02em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 14px "IBM Plex Sans KR",sans-serif;padding:7px 16px;border-radius:999px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px}
+.tile{position:relative;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:0;border-radius:22px;padding:22px 24px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;gap:14px;transition:transform .2s,background .2s,color .2s}
+[data-c="ai"]{--cc:#D42F3A}[data-c="wk"]{--cc:#C85A00}[data-c="vis"]{--cc:#1F8A4C}[data-c="rob"]{--cc:#2459E6}[data-c="app"]{--cc:#7C4DEB}
+.tile .tags span{background:var(--bg)}
+.tile:hover,.tile:focus-within{background:var(--cc);color:#fff;transform:translateY(-3px)}
+.tile:hover p,.tile:hover .k,.tile:focus-within p,.tile:focus-within .k{color:rgba(255,255,255,.9)}
+.tile:hover .k i,.tile:focus-within .k i,.tile:hover .hl li::before,.tile:focus-within .hl li::before{background:#fff}
+.tile:hover .tags span,.tile:focus-within .tags span{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.55);color:#fff}
+.tile:hover .n,.tile:hover .award,.tile:focus-within .n,.tile:focus-within .award{color:#fff}
+.tile:hover .go,.tile:focus-within .go{background:#fff;color:var(--cc);border-color:#fff}
+.chip i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--cc);margin-right:7px}
+.dlg .m{color:var(--cc)}.dlg .btn.p{background:var(--cc);border-color:var(--cc);color:#fff}
+.tile .k{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute)}
+.tile .k i{width:10px;height:10px;border-radius:50%;background:var(--cc);flex:none}
+.tile h3{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:6px 0 6px}
+.tile p{margin:0;font-size:14.5px;color:var(--mute);line-height:1.55}
+.tile .more{position:absolute;right:18px;top:16px;width:28px;height:28px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-size:17px;line-height:1;opacity:.6}
+.tile.dim{opacity:.22}
+.big{grid-column:span 4;grid-row:span 2;padding:32px;border-radius:32px}
+.big h3{font-size:clamp(26px,3.4vw,40px);line-height:1.2;max-width:12em}
+.big .priv{align-self:flex-start;font-size:13px;padding:4px 12px;border-radius:999px;border:1.5px solid currentColor}
+.stat{grid-column:span 2;grid-row:span 2;border-radius:32px;padding:28px}
+.stat .n{font:800 clamp(52px,7vw,84px)/1 "Bricolage Grotesque",sans-serif;letter-spacing:-.04em;color:var(--cc)}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s6{grid-column:span 6;border-radius:30px}
+.s6 .award{font:800 clamp(34px,5vw,56px)/1 "Bricolage Grotesque",sans-serif;color:var(--cc);position:absolute;right:28px;top:22px}
+.s6 p{max-width:46em}
+
+.tile[hidden]{display:none}
+.grid.f .tile{grid-column:span 3!important;grid-row:auto!important;animation:in .28s ease-out}
+.grid.f .tile.wide{grid-column:span 6!important}
+@keyframes in{from{opacity:0;transform:scale(.97)}}
+.hl{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:5px}
+.hl li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.5}
+.hl li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--cc)}
+.big .hl{grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:18px}.big .hl li{font-size:15px}
+.foot{padding-right:54px;min-height:34px;display:flex;align-items:flex-end}
+.tags.sm span{font-size:12px;padding:2px 9px}
+.go{position:absolute;right:16px;bottom:16px;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .15s}
+.go:hover{transform:translateX(3px)}
+
+/* lists */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.row{display:grid;grid-template-columns:7.5em 1fr;gap:16px;padding:16px 0;border-top:1.5px solid var(--line)}
+.row b{font-weight:500;color:var(--cob)}
+.row span{display:block;color:var(--mute);font-size:14.5px}
+a.row{text-decoration:none;color:inherit;transition:background .15s}a.row:hover{background:var(--sky)}a.row u{color:var(--cob);text-underline-offset:3px;font-weight:500}
+.stk{display:grid;gap:18px}.stk h3{font-size:15px;color:var(--mute);font-weight:500;margin-bottom:8px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tags span{font-size:13.5px;padding:4px 12px;border-radius:999px;background:var(--card);border:1.5px solid var(--line)}
+footer{margin-top:88px;padding:56px 0 64px;background:var(--ink);color:var(--bg)}
+footer h2{font-size:clamp(30px,5vw,56px);font-weight:700;letter-spacing:-.03em;max-width:14em;margin-bottom:24px}
+footer .btn{border-color:var(--bg)}footer .btn:hover{background:var(--bg);color:var(--ink)}
+footer small{display:block;margin-top:40px;opacity:.6}
+
+/* dialog */
+dialog{border:0;border-radius:28px;padding:0;width:min(640px,92vw);max-height:86vh;background:var(--card);color:var(--ink);box-shadow:0 30px 80px rgba(8,14,40,.35)}
+dialog::backdrop{background:rgba(10,16,40,.55);backdrop-filter:blur(3px)}
+dialog[open]{animation:pop .22s ease-out}
+@keyframes pop{from{transform:translateY(14px) scale(.98);opacity:0}}
+.dlg{padding:32px 32px 28px}
+.dlg h3{font-size:28px;font-weight:700;margin:6px 0 6px;letter-spacing:-.02em}
+.dlg .m{font-weight:500;margin:0 0 18px}
+.dlg ul{padding-left:1.1em;margin:0 0 20px}.dlg li{margin:6px 0}
+.dlg form{position:absolute;right:16px;top:16px}
+.dlg .x{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font-size:20px;cursor:pointer}
+.dlg .btn{margin-top:20px}
+
+@media (max-width:860px){
+.hero{grid-template-columns:1fr;min-height:0}.stage{max-width:440px;margin:0 auto}
+.grid{grid-template-columns:1fr}.grid>*{grid-column:auto!important;grid-row:auto!important}.grid.f .tile,.grid.f .tile.wide{grid-column:auto!important}.s6 .award{position:static;margin-bottom:6px}.big .hl{grid-template-columns:1fr}
+.s6{flex-direction:column;align-items:flex-start}.cols{grid-template-columns:1fr}.big{padding:26px}
+}
+@media (prefers-reduced-motion:reduce){.tile,.btn,.go{transition:none}.grid.f .tile{animation:none}dialog[open]{animation:none}}
+</style>
+<script>window.__h=168+Math.random()*64;document.documentElement.style.setProperty("--h",window.__h.toFixed(1))</script>
+</head>
+<body>
+<main class="wrap">
+<header class="hero">
+  <div>
+    <p class="en">Yunju Lee · Portfolio 2026</p>
+    <h1>이윤주</h1>
+    <p class="tag">보고, 듣고, 말하고, 움직이는 시스템을 설계부터 구현까지 혼자 만듭니다.</p>
+    <p class="sub">일본 나고야에서 소프트웨어 엔지니어로 일합니다. 동국대 인공지능 석사이고, 컴퓨터 비전·로봇 연구와 논문 1저자 경험이 있어요. 음성 AI부터 3D 데이터, 데스크톱 툴까지 만들어왔습니다.</p>
+    <div class="links">
+      <a class="btn p" href="#work">프로젝트 보기</a>
+      <a class="btn" href="mailto:eyunju4928@gmail.com">메일 보내기</a>
+      <a class="btn" href="https://github.com/LEEYUN-JU" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="stage"><canvas id="pc" role="img" aria-label="포인트클라우드로 만든 물체가 계속 바뀌며 분류 결과가 표시되는 애니메이션. 클릭하면 다음 물체로 바뀝니다."></canvas>
+    <span class="cap">RGB-D 물체 분류 연구에서 가져온 장면 · 클릭하면 다음 물체</span></div>
+</header>
+
+<section id="work">
+  <div class="head"><h2>프로젝트</h2>
+    <div class="chips" id="chips" role="group" aria-label="분야 필터"></div></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section>
+  <div class="cols">
+    <div>
+      <div class="head"><h2>이력</h2></div>
+      <div class="row"><b>2024.10<br>– 현재</b><div>OH Channel Innovations (Hitachi Channel Solutions)<span>Software Engineer · 나고야 · 아바타 음성 AI, IOMC, 예금기 미들웨어</span></div></div>
+      <div class="row"><b>2022.09<br>– 2024.08</b><div>동국대학교 인공지능 석사<span>GPA 4.06 / 4.5</span></div></div>
+      <div class="row"><b>2019.10<br>– 2021.08</b><div>한국기계연구원(KIMM) 학생연구원<span>대전 · 촉각 센서, 포인트클라우드, 로봇 시뮬레이션</span></div></div>
+      <div class="row"><b>2019.09<br>– 2021.08</b><div>우송대학교 IT융합 석사<span>GPA 4.44 / 4.5</span></div></div>
+      <div class="row"><b>2015.03<br>– 2019.08</b><div>우송대학교 글로벌호텔경영 학사<span>GPA 3.43 / 4.5</span></div></div>
+      <div class="head" style="margin-top:48px"><h2>논문</h2></div>
+      <a class="row" href="https://doi.org/10.7717/peerj-cs.2843" target="_blank" rel="noopener"><b>2025</b><div>ROM-Pose: Restoring occluded mask image for 2D human pose estimation<span>Lee, Y., &amp; Kim, J. · PeerJ Computer Science 11, e2843 · <u>PeerJ 논문 보기</u></span></div></a>
+      <div class="row"><b>2023</b><div>Increase Performance by Data Augmentation in Pose Estimation Task with Occluded Situation<span>Lee, Y., &amp; Park, C. · Korea Computer Congress (KCC 2023)</span></div></div>
+      <div class="row"><b>2020</b><div>Analysis of Feature Scaling Method in Deep Learning-based Single Grasp Object Classification<span>Lee, Y., Choi, T., &amp; Do, H. · ICCAS 2020, pp. 1,284–1,285</span></div></div>
+    </div>
+    <div>
+      <div class="head"><h2>사용 기술</h2></div>
+      <div class="stk">
+        <div><h3>음성·언어 모델</h3><div class="tags"><span>Whisper</span><span>QWEN</span><span>Llama</span><span>Style-BERT-VITS2</span><span>파인튜닝</span></div></div>
+        <div><h3>비전·3D</h3><div class="tags"><span>Python</span><span>PointNet</span><span>CNN</span><span>RGB-D</span><span>k-d tree</span><span>OpenCV</span><span>RealSense</span></div></div>
+        <div><h3>데스크톱·그래픽</h3><div class="tags"><span>C/C++</span><span>C#</span><span>MFC</span><span>WPF</span><span>.NET</span><span>OpenGL</span><span>Unity</span><span>Blender</span></div></div>
+        <div><h3>웹·임베디드·기타</h3><div class="tags"><span>Java</span><span>SQL</span><span>Firebase</span><span>Android</span><span>MongoDB</span><span>Raspberry Pi</span><span>Arduino</span><span>Bluetooth</span><span>Git</span></div></div>
+        <div><h3>언어</h3><div class="tags"><span>한국어 모국어</span><span>일본어 JLPT N1</span><span>영어 TOEIC 810</span><span>중국어 HSK 3</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="head"><h2>수상·자격</h2></div>
+  <div class="cols">
+    <div>
+      <div class="row"><b>2025.12</b><div>Microsoft Certified: Azure AI Fundamentals (AI-900)</div></div>
+      <div class="row"><b>2023.12</b><div>Knowledge Science Center Project 우수상</div></div>
+      <div class="row"><b>2019.05</b><div>China International Software Expo 2019 · Big Data Application 2위</div></div>
+    </div>
+    <div>
+      <div class="row"><b>2019</b><div>Winter SW Combine Creative Camp · Big Data &amp; AI Project 2위</div></div>
+      <div class="row"><b>2019</b><div>교내 프로그래밍 경진대회 2위</div></div>
+      <div class="row"><b>교내</b><div>프로그래밍 경진대회 2위</div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+  <h2>같이 만들 일이 있다면 편하게 연락 주세요.</h2>
+  <div class="links"><a class="btn" href="mailto:eyunju4928@gmail.com">eyunju4928@gmail.com</a><a class="btn" href="https://github.com/LEEYUN-JU" target="_blank" rel="noopener">github.com/LEEYUN-JU</a></div>
+  <small>© 2026 Yunju Lee</small>
+</div></footer>
+
+<dialog id="dlg"><div class="dlg" id="dbody"></div></dialog>
+
+<script>
+const C={ai:'AI·음성',wk:'현업 시스템',vis:'비전·3D·시각화',rob:'로봇',app:'앱·웹'};
+const P=[
+{c:'ai',cl:'big',h:['평균 응답 속도 2초대','인터넷 없이 로컬(온프레미스)에서 동작','STT · LLM · TTS 모두 파인튜닝','Unity 3D 아바타와 실시간 연동'],t:'오프라인에서 돌아가는 3D 아바타 음성 챗봇',m:'OHCI · 2024.10 ~ 현재 · 메인 프로그래머',d:'인터넷 없는 로컬 환경에서 말을 듣고, 답하고, 아바타가 말합니다. 평균 응답 속도 2초대.',priv:1,
+ b:['온프레미스 환경, GPU는 A2000 한 장','음성 인식(STT), 언어 모델(LLM), 음성 합성(TTS) 세 단계를 모두 파인튜닝','음성 인식, 응답 생성, 음성 합성, Unity 아바타 반응까지 이어지는 전체 흐름을 구현','Unity와 Blender로 아바타 동작, 리깅, 애니메이션 제작·조정','설계부터 구현까지 단독 수행, 평균 응답 속도 2초대'],k:['Whisper','Llama','QWEN','Style-BERT-VITS2','Unity','Blender'],note:'보안상의 이유로 상세 내용은 비공개입니다.'},
+{c:'ai',cl:'stat',h:['복원 모델 + 자세 추정 2단계 구조','AP +1.6 ~ +1.8 향상','Whole COCO 마스크 자동 생성'],t:'ROM-Pose',n:'AP-M +12',m:'논문 1저자 · PeerJ Computer Science · 2025',d:'가려진 사람의 자세를, 먼저 가려진 부분을 복원한 뒤 추정합니다.',
+ b:['복원 모델과 자세 추정(HPE) 모델의 2단계 구조','Whole COCO 마스크 데이터셋 자동 생성','AP +1.6 (ResNet-50/101), +1.8 (ResNet-152)','중간 크기 인물(AP-M)에서 12 이상 향상','관련 선행 연구: 가려진 상황의 자세 추정 데이터 증강 (KCC 2023)'],k:['2D 자세 추정','OpenCV','COCO'],l:['https://doi.org/10.7717/peerj-cs.2843','논문 보기']},
+{c:'ai',cl:'s2',h:['Normalize 기준 Angle 95.17%','Effort 94.58%','스케일링 4종 비교'],t:'Object Classification: 촉각 센서',m:'ICCAS 2020 · KIMM 학생연구원',d:'로봇 핸드가 쥔 촉각 이미지를 CNN으로 분류하고 스케일링 기법을 비교했습니다.',b:['파지, 촉각 이미지, 스케일링, CNN 분류 순서','Standard, Min-Max, Robust, Normalize 비교','Normalize 기준 Angle 95.17%, Effort 94.58%','한국기계연구원(KIMM) 학생연구원으로 데이터 수집부터 분류까지 수행'],k:['CNN','촉각 이미지'],ref:'Lee, Choi, Do. Analysis of Feature Scaling Method in Deep Learning-based Single Grasp Object Classification. pp. 1284-1285'},
+{c:'ai',cl:'s2',h:['8종 물체 분류','조명·각도 조건별 혼동행렬 평가','객체와 배경 분리 후 분류'],t:'Object Classification: 포인트클라우드',m:'연구 · 설계 · 구현',d:'RGB-D 카메라로 얻은 포인트클라우드에서 배경을 걷어내고 PointNet으로 8종 물체를 분류합니다.',b:['8종: apple, banana, baseball, cube, pear, soup, spam, tennis','객체와 배경 분리 후 분류','조명 유무, 촬영 각도별 혼동행렬로 평가'],k:['Python','PointNet','RGB-D']},
+{c:'ai',c2:'app',cl:'s2',h:['챗봇 AI 파트 담당 (4인 팀)','Flutter 앱 + Firebase 서버','AI는 Gemini 사용'],t:'sMiLe: 감정 케어 채팅 앱',m:'GDSC Dongguk · 2024 Solution Challenge · 챗봇 AI',d:'대화하며 우울한 기분이 더 깊어지지 않도록 돕고, 지금 우울한 상태인지 확인해보는 채팅 앱.',b:['GDSC Dongguk의 2024 Solution Challenge 프로젝트','앱 개발 2명, 챗봇 AI 2명으로 이뤄진 4인 팀에서 챗봇 AI 파트를 담당','우울감이 더 깊어지는 것을 막는 채팅, 현재 우울 여부 확인','Flutter 앱, Firebase 서버, AI는 Gemini 사용'],k:['Flutter','Firebase','Gemini'],l:['https://github.com/GDSC-DGU/2024-SolutionChallenge-sMiLe','GitHub 보기']},
+{c:'wk',cl:'s3',h:['새 플랫폼·호환성 요구 대응','테스트와 결함 원인 분석'],t:'IOMC 시스템 개발·유지보수',m:'OH Channel Innovations · 2024.10 ~ 현재',d:'새 플랫폼과 호환성 요구에 맞춰 소프트웨어를 고치고, 테스트로 안정성을 지킵니다.',b:['IOMC 소프트웨어 개발 및 유지보수, 새 플랫폼·호환성 대응 수정','소프트웨어 테스트, 결함 원인 분석, 수정 사항 검증','시스템 신뢰성 확보'],k:['C/C++','Windows']},
+{c:'wk',cl:'s3',h:['미들웨어 통신 SW 개발·유지보수','이슈 조사와 수정 검증'],t:'예금기 미들웨어 통신',m:'OH Channel Innovations · 2024.10 ~ 현재',d:'예금기와 통신하는 미들웨어를 개발하고, 문제가 생기면 원인을 찾아 검증합니다.',b:['예금기 미들웨어 통신 소프트웨어 개발 및 유지보수','소프트웨어 테스트, 이슈 조사, 수정 사항 검증','안정적인 통신 동작 보장'],k:['ATM 미들웨어','UART Serial']},
+{c:'vis',cl:'s2',h:['.pcd / .ply 뷰어·편집','k-d tree 기반 객체 분리'],t:'포인트클라우드 편집기',m:'설계 · 구현',d:'.pcd와 .ply를 열어 자르고 편집하고, 객체를 분리합니다.',b:['.pcd / .ply 파일 뷰어','파일 편집, 데이터 자르기','kdtree 기반 객체 분리'],k:['C++','MFC']},
+{c:'vis',c2:'rob',cl:'s2',h:['시점 4종: X1, X1.5, X2, Free','허리·양팔 축별 각도 설정','실제 컨트롤러 연결'],t:'양팔로봇 시뮬레이터',m:'KIMM 학생연구원 · 메인 프로그래머',d:'허리와 양팔의 축별 각도를 설정하고 여러 시점에서 확인합니다.',b:['로봇 뷰어: X1, X1.5, X2, Free 시점','허리 및 양팔 축별 각도 값 설정','실제 로봇 컨트롤러 연결'],k:['C++','MFC','OpenGL']},
+{c:'vis',cl:'s2',h:['WAMIS API + TensorFlow 예측','Unity 3D 시뮬레이션'],t:'상수도 시뮬레이션 VR',m:'교내 2위 · VR 게임',d:'공공 데이터와 예측 모델로 상하수도 흐름을 체험하는 게임.',b:['클라이언트: 상황 변수 설정, 3D 시뮬레이션, 결과 출력','서버: WAMIS Open API 호출, 데이터 분석·가공','MongoDB 저장, TensorFlow로 예측 데이터 생성'],k:['Unity','TensorFlow','MongoDB']},
+{c:'vis',cl:'s6',h:['Parser · Binder · Chart 3모듈','비동기 파싱, 빠른 반응','줌 · 분리 · 통합 그래프'],t:'신경생리 빅데이터 시각화 툴',aw:'국제 2위',m:'제23회 북경 국제 SW경진대회 · Big Data Application 2등상 · 2019.05',d:'큰 신경생리 데이터를 끊김 없이 훑어보는 차트 툴. 비동기 파싱으로 빠르게 반응합니다.',b:['Data Parser, Data Binder, VA Chart 모듈 구조','비동기 파싱과 빠른 반응 속도','마우스 드래그 윈도우 슬라이딩, 스크롤','그래프 줌, 분리, 통합'],k:['MFC']},
+{c:'rob',cl:'s3',h:['양팔 매니퓰레이터 제어·시뮬레이션','Phantom Omni 햅틱 장치 활용'],t:'양팔로봇 오퍼레이터',m:'KIMM 학생연구원 · 2019.10 ~ 2021.08',d:'양팔 매니퓰레이터와 Phantom Omni 햅틱 장치를 다루는 제어·시뮬레이션 작업에 참여했습니다.',b:['양팔 매니퓰레이터 제어·시뮬레이션 작업에 참여','Phantom Omni 햅틱 장치를 활용한 작업','한국기계연구원(KIMM) 학생연구원 시절 수행'],k:['Phantom Omni','양팔 매니퓰레이터']},
+{c:'app',cl:'s3',h:['Client · Service · DB 3계층','P2P 대국, 토너먼트, 채팅'],t:'CHESS 온라인 대전',m:'Windows 데스크톱 앱(WPF) · UI 디자인 · 통신',d:'방을 만들고 1:1이나 토너먼트로 체스를 둡니다.',b:['Client, Service, Database 3계층 구조','Singleton Control(Proxy)로 방 목록과 입장 관리','1:1 대전, 토너먼트 방, 닉네임 로그인, 채팅','상대 이동 좌표를 P2P로 수신'],k:['WPF','Windows']},
+{c:'app',cl:'s3',h:['센서에서 서버, 앱 알림까지','부저 정지 처리'],t:'Home Alone',m:'해커톤 · 통신 서버 구성 · 설계',d:'연기를 감지하면 폰으로 알리고, 앱에서 부저를 끕니다.',b:['연기 감지 센서와 진동 모듈 (Raspberry Pi, Arduino)','Android 앱이 화재 감지, 알림, 부저 정지 처리','PC 서버에서 데이터 수신·분석·DB 저장'],k:['Python','Android']},
+{c:'app',cl:'s3',h:['관리자만 수정, 일반은 조회','동시 접속 30명 안정 동작'],t:'봄 운동회 모바일 웹',m:'개인 프로젝트 · 2026',d:'홍팀·백팀 명단, 점수표, 일정을 앱 설치 없이 봅니다.',b:['관리자 로그인 시에만 수정, 일반은 조회 전용','Firebase Realtime Database 사용','동시 접속 30명 안정 동작 확인'],k:['Firebase'],l:['https://leeyun-ju.github.io/2026_Sports_Day/readme.html','상세 페이지 보기']}
+];
+const g=document.getElementById('grid'),ch=document.getElementById('chips'),dlg=document.getElementById('dlg'),db=document.getElementById('dbody');
+P.forEach(p=>{const b=document.createElement('div');b.className='tile '+(p.cl||'s2');b.dataset.c=p.c;if(p.c2)b.dataset.c2=p.c2;
+ const k=`<div class="k"><i></i>${C[p.c]}${p.c2?`<i data-c="${p.c2}" style="margin-left:12px"></i>${C[p.c2]}`:''}</div>`,hl=`<ul class="hl">${p.h.map(x=>`<li>${x}</li>`).join('')}</ul>`,
+ tg=`<div class="foot"><div class="tags sm">${p.k.map(x=>`<span>${x}</span>`).join('')}</div></div>`;
+ let h;
+ if(p.cl==='stat')h=`<div>${k}<h3>${p.t}</h3><p>${p.d}</p>${hl}</div><div class="n">${p.n}</div>${tg}`;
+ else if(p.cl==='s6')h=`<div class="award">${p.aw}</div><div>${k}<h3>${p.t}</h3><p>${p.d}</p>${hl}</div>${tg}`;
+ else if(p.cl==='big')h=`<div>${k}<h3>${p.t}</h3><p>${p.d}</p>${hl}</div><div><span class="priv">상세 내용 비공개</span></div>${tg}`;
+ else h=`<div>${k}<h3>${p.t}</h3><p>${p.d}</p>${hl}</div>${tg}`;
+ b.innerHTML=h+'<button class="go" aria-label="'+p.t+' 자세히 보기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>';
+ b.onclick=()=>open(p);g.appendChild(b)});
+function open(p){db.innerHTML=`<form method="dialog"><button class="x" aria-label="닫기">×</button></form><div class="k" style="color:var(--mute);font-size:14px;display:flex;align-items:center;gap:8px"><i style="width:10px;height:10px;border-radius:50%;background:var(--cc)"></i>${C[p.c]}</div><h3>${p.t}</h3><p class="m">${p.m}</p><ul>${p.b.map(x=>`<li>${x}</li>`).join('')}</ul><div class="tags">${p.k.map(x=>`<span>${x}</span>`).join('')}</div>${p.note?`<p style="color:var(--mute);font-size:14px;margin:16px 0 0">${p.note}</p>`:''}${p.ref?`<p style="color:var(--mute);font-size:13.5px;margin:16px 0 0">${p.ref}</p>`:''}${p.l?`<a class="btn p" href="${p.l[0]}" target="_blank" rel="noopener">${p.l[1]}</a>`:''}`;dlg.dataset.c=p.c;dlg.showModal()}
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+[['all','전체'],...Object.entries(C)].forEach(([k,v])=>{const n=k==='all'?P.length:P.filter(p=>p.c===k||p.c2===k).length,b=document.createElement('button');b.className='chip';b.innerHTML=(k==='all'?'':'<i></i>')+v+' '+n;b.dataset.c=k;b.setAttribute('aria-pressed',k==='all');
+ b.onclick=()=>{ch.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');const f=k!=='all',vis=[];g.classList.toggle('f',f);g.querySelectorAll('.tile').forEach(t=>{const on=!f||t.dataset.c===k||t.dataset.c2===k;t.hidden=!on;t.classList.remove('wide');if(on)vis.push(t)});if(f&&vis.length%2)vis[vis.length-1].classList.add('wide')};ch.appendChild(b)});
+
+/* point cloud hero */
+const cv=document.getElementById('pc'),cx=cv.getContext('2d'),N=760,RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let W,H,D=Math.min(devicePixelRatio||1,2),s=7;
+const R=()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const sph=(a,b,c)=>{const u=R()*2-1,t=R()*6.283,r=Math.sqrt(1-u*u);return[a*r*Math.cos(t),b*u,c*r*Math.sin(t)]};
+const box=(a,b,c)=>{const q=[R()*2-1,R()*2-1,R()*2-1],k=R()*3|0;q[k]=R()<.5?-1:1;return[q[0]*a,q[1]*b,q[2]*c]};
+const SH=[
+['apple',()=>{const p=sph(.9,.8,.9);if(p[1]>0)p[1]-=.28*Math.exp(-(p[0]**2+p[2]**2)*5);return p}],
+['pear',()=>{const y=R()*2-1,r=.75*Math.exp(-Math.pow((y+.4)/.55,2))+.32*Math.exp(-Math.pow((y-.45)/.4,2)),a=R()*6.283;return[r*Math.cos(a),y*1.1,r*Math.sin(a)]}],
+['cube',()=>box(.8,.8,.8)],
+['banana',()=>{const a=(R()-.5)*2,f=R()*6.283,r=.17*(1-Math.abs(a)*.35),o=r*Math.cos(f);return[1.3*Math.sin(a)+o*Math.sin(a),1.3*Math.cos(a)-.9+o*Math.cos(a),r*Math.sin(f)]}],
+['spam',()=>box(1.1,.55,.7)],
+['soup',()=>{const a=R()*6.283;if(R()<.2){const r=.6*Math.sqrt(R());return[r*Math.cos(a),R()<.5?-.5:.5,r*Math.sin(a)]}return[.6*Math.cos(a),R()-.5,.6*Math.sin(a)]}]
+].map(([n,f])=>({n,p:Array.from({length:N},f)}));
+let cur=SH[0].p.map(p=>p.slice()),k=0,conf=.97,ang=.6,tx=.35,mx=0,my=0,bb=[0,0,0,0],last=0,col='#2B45F5';
+let base=window.__h,hue=base,lastH=-1,PX=.5,PY=.5;const root=document.documentElement,DK=matchMedia('(prefers-color-scheme:dark)');
+addEventListener('pointermove',e=>{PX=e.clientX/innerWidth;PY=e.clientY/innerHeight});
+function fit(){const r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*D;cv.height=H*D;cx.setTransform(D,0,0,D,0,0)}
+function next(){k=(k+1)%SH.length;conf=.9+R()*.09}
+cv.addEventListener('click',next);
+cv.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)/r.width-.5;my=(e.clientY-r.top)/r.height-.5});
+matchMedia('(prefers-color-scheme:dark)').addEventListener('change',fit);
+addEventListener('resize',fit);fit();
+function draw(t){
+ const th=Math.max(165,Math.min(238,base+(RM?0:(PX-.5)*44+(PY-.5)*16+Math.sin(t/7000)*5)));hue+=(th-hue)*.05;
+ if(Math.abs(hue-lastH)>.08){root.style.setProperty('--h',hue.toFixed(1));lastH=hue}
+ col='hsl('+hue.toFixed(1)+' 90% '+(DK.matches?72:34)+'%)';
+ if(!RM&&t-last>3400){last=t;next()}
+ if(!RM)ang+=.007+mx*.02;
+ const T=SH[k].p,sc=Math.min(W,H)*.27,ca=Math.cos(ang),sa=Math.sin(ang),ct=Math.cos(tx+my*.3),st=Math.sin(tx+my*.3);
+ cx.clearRect(0,0,W,H);cx.fillStyle=col;
+ let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+ for(let i=0;i<N;i++){const c=cur[i],q=T[i];c[0]+=(q[0]-c[0])*.07;c[1]+=(q[1]-c[1])*.07;c[2]+=(q[2]-c[2])*.07;
+  const X=c[0]*ca-c[2]*sa,Z=c[0]*sa+c[2]*ca,Y=c[1]*ct-Z*st,Z2=c[1]*st+Z*ct,f=1/(1-Z2*.2),
+  px=W/2+X*sc*f,py=H/2+Y*sc*f;
+  cx.globalAlpha=.35+.65*((Z2+1.4)/2.8);cx.beginPath();cx.arc(px,py,1+(Z2+1.2)*.8,0,6.283);cx.fill();
+  if(px<x0)x0=px;if(px>x1)x1=px;if(py<y0)y0=py;if(py>y1)y1=py}
+ const g=[x0-10,y0-10,x1+10,y1+10];for(let i=0;i<4;i++)bb[i]+=(g[i]-bb[i])*.12;
+ cx.globalAlpha=1;cx.strokeStyle=col;cx.lineWidth=2;const[a,b,c,d]=bb,L=16;
+ cx.beginPath();[[a,b,1,1],[c,b,-1,1],[a,d,1,-1],[c,d,-1,-1]].forEach(([x,y,u,v])=>{cx.moveTo(x+u*L,y);cx.lineTo(x,y);cx.lineTo(x,y+v*L)});cx.stroke();
+ const lb=SH[k].n+'  '+conf.toFixed(2);cx.font='700 14px "IBM Plex Sans KR",sans-serif';const w=cx.measureText(lb).width+16;
+ cx.fillStyle=col;cx.fillRect(a,b-26,w,24);cx.fillStyle=DK.matches?'hsl('+hue.toFixed(1)+' 60% 10%)':'#fff';cx.fillText(lb,a+8,b-9);
+ requestAnimationFrame(draw)}
+requestAnimationFrame(draw);
+</script>
+</body>
+</html>
